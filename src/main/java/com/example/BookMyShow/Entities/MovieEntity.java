@@ -3,10 +3,7 @@ package com.example.BookMyShow.Entities;
 import com.example.BookMyShow.Enums.Languages;
 import com.example.BookMyShow.Enums.MovieTypes;
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +14,8 @@ import java.util.List;
 //@Getter
 //@Setter
 @NoArgsConstructor
+@Builder
+@AllArgsConstructor
 public class MovieEntity {
 
     @Id

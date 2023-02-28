@@ -2,6 +2,8 @@ package com.example.BookMyShow.Entities;
 
 import com.example.BookMyShow.Enums.SeatType;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,6 +11,8 @@ import lombok.NoArgsConstructor;
 @Table(name = "theater_seats")
 @Data
 @NoArgsConstructor
+@Builder
+@AllArgsConstructor
 public class TheaterSeatEntity {
 
     @Id
