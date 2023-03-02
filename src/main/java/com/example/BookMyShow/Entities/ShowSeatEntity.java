@@ -22,7 +22,7 @@ public class ShowSeatEntity {
 
     private int price;
 
-    private int seatNo;
+    private String seatNo;
 
     @Enumerated(value = EnumType.STRING)
     private SeatType seatType;

@@ -23,18 +23,26 @@ public class TheaterService {
     TheaterSeatRepository theaterSeatRepository;
 
 
-    public String addTheater(TheaterEntryDTO theaterEntryDTO){
+    public String addTheater(TheaterEntryDTO theaterEntryDTO) throws Exception{
+
+        // Do some validation
+        if(theaterEntryDTO.getName() == null || theaterEntryDTO.getLocation() == null)
+            throw new Exception("Name & Location should not valid");
 
         TheaterEntity theaterEntity = TheaterConverter.convertDTOtoEntity(theaterEntryDTO);
 
         List<TheaterSeatEntity> theaterSeatEntityList =createTheaterSeats(theaterEntryDTO,theaterEntity);
 
+        theaterEntity.setTheaterSeatEntityList(theaterSeatEntityList);
 
-        return "";
+        theaterRepository.save(theaterEntity);
+
+
+        return "Theater Added Successfully";
 
     }
 
-    public List<TheaterSeatEntity> createTheaterSeats(TheaterEntryDTO theaterEntryDTO,TheaterEntity theaterEntity){
+    private List<TheaterSeatEntity> createTheaterSeats(TheaterEntryDTO theaterEntryDTO,TheaterEntity theaterEntity){
 
         int noOfClassicSeats = theaterEntryDTO.getClassicSeatsCount();
         int noOfPremiumSeats = theaterEntryDTO.getPremiumSeatsCount();
@@ -45,7 +53,7 @@ public class TheaterService {
         for(int count = 1; count <= noOfClassicSeats; count++){
 
             TheaterSeatEntity theaterSeatEntity = TheaterSeatEntity.builder().seatType(SeatType.CLASSIC).
-                                                    seatNo(count + "C").
+                                                    seatNo(count+"C").
                                                   theaterEntity(theaterEntity) . build();
 
             theaterSeatEntityList.add(theaterSeatEntity);
@@ -62,7 +70,9 @@ public class TheaterService {
             theaterSeatEntityList.add(theaterSeatEntity);
         }
 
-       return theaterSeatRepository.saveAll(theaterSeatEntityList);
+        //theaterSeatRepository.saveAll(theaterSeatEntityList);
+
+        return theaterSeatEntityList;
 
     }
 }

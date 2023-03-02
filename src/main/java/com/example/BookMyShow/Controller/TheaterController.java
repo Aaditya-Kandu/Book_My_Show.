@@ -3,6 +3,8 @@ package com.example.BookMyShow.Controller;
 import com.example.BookMyShow.EntryDTOs.TheaterEntryDTO;
 import com.example.BookMyShow.Services.TheaterService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,8 +18,15 @@ public class TheaterController {
     TheaterService theaterService;
 
     @PostMapping("/add_theater")
-    public String addTheater(@RequestBody()TheaterEntryDTO theaterEntryDTO){
-        return "";
+    public ResponseEntity<String> addTheater(@RequestBody()TheaterEntryDTO theaterEntryDTO){
+
+        try {
+            String response = theaterService.addTheater(theaterEntryDTO);
+            return new ResponseEntity<>(response , HttpStatus.CREATED);
+        }catch (Exception e){
+
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
+        }
 
     }
 }

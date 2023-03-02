@@ -3,10 +3,7 @@ package com.example.BookMyShow.Entities;
 import com.example.BookMyShow.Enums.ShowType;
 import jakarta.persistence.*;
 import jdk.jfr.Timestamp;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -19,9 +16,9 @@ import java.util.List;
 @Entity
 @Table(name = "shows")
 @Data
-//@Getter
-//@Setter
 @NoArgsConstructor
+@Builder
+@AllArgsConstructor
 public class ShowEntity {
 
     @Id
