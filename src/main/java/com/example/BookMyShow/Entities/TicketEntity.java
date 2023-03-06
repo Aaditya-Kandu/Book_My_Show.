@@ -1,6 +1,8 @@
 package com.example.BookMyShow.Entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,6 +14,8 @@ import java.util.UUID;
 @Table(name = "tickets")
 @Data
 @NoArgsConstructor
+@Builder
+@AllArgsConstructor
 public class TicketEntity  {
 
     @Id
@@ -28,7 +32,9 @@ public class TicketEntity  {
 
    private int totalAmount;
 
-   private String ticket = UUID.randomUUID().toString();
+   private String ticketId = UUID.randomUUID().toString();
+
+   private String bookedSeats;
 
    // ticket is child wrt the user;
 

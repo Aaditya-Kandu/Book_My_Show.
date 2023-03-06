@@ -25,6 +25,8 @@ public class TheaterEntity {
 
     private String location;
 
+    private String bookedSeat;
+
     //mapping in parent class.
 
     @OneToMany(mappedBy = "theaterEntity" , cascade = CascadeType.ALL)
